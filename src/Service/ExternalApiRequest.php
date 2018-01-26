@@ -2,40 +2,48 @@
 
 namespace App\Service;
 
-use GuzzleHttp\Client as Guzzle;
+use App\Exception\ExternalApiException;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\RequestException;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class ExternalApiRequest
 {
     /**
-     * @var Guzzle
+     * @var GuzzleClient
      */
-    protected $guzzle;
+    protected $client;
 
     /**
      * ExternalApiRequest constructor.
-     * @param Guzzle $guzzle
+     * @param GuzzleClient $client
      */
-    public function __construct(Guzzle $guzzle)
+    public function __construct(GuzzleClient $client)
     {
-        $this->guzzle = $guzzle;
+        $this->client = $client;
     }
 
-    protected function apiRequest($url)
+
+    /**
+     * @param $url
+     * @param string $method
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @throws ExternalApiException
+     */
+    protected function send($url, $method = 'GET')
     {
         try {
-            $client = new Guzzle;
-            $response = $client->request('GET', $url);
+            $response = $this->client->request($method, $url);
 
-            if ($response->getStatusCode() !== 200) {
-                throw new \Exception("NASA API error: Status code " . $response->getStatusCode());
+            if ($response->getStatusCode() !== Response::HTTP_OK) {
+                throw new ExternalApiException("API error: Status code " . $response->getStatusCode());
             }
 
             return $response;
 
         } catch (RequestException $e) {
-            throw new \Exception("NASA API error: " . $e->getMessage());
+            throw new ExternalApiException("API error: " . $e->getMessage());
         }
     }
 }
