@@ -13,16 +13,16 @@ class ScheduleRepository extends ServiceEntityRepository
         parent::__construct($registry, Schedule::class);
     }
 
-    /*
-    public function findBySomething($value)
+    /**
+     * @param $season
+     * @return mixed
+     */
+    public function removeScheduleBySeason($season)
     {
-        return $this->createQueryBuilder('m')
-            ->where('m.something = :value')->setParameter('value', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        return $this->createQueryBuilder('s')
+            ->delete()
+            ->where('s.season  = :season')->setParameter("season", $season)
+            ->getQuery()->execute();
     }
-    */
+
 }

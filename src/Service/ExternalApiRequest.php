@@ -11,36 +11,32 @@ use Symfony\Component\HttpFoundation\Response;
 class ExternalApiRequest
 {
     /**
-     * @var GuzzleClient
-     */
-    protected $client;
-
-    /**
-     * ExternalApiRequest constructor.
-     * @param GuzzleClient $client
-     */
-    public function __construct(GuzzleClient $client)
-    {
-        $this->client = $client;
-    }
-
-
-    /**
      * @param $url
      * @param string $method
      * @return mixed|\Psr\Http\Message\ResponseInterface
      * @throws ExternalApiException
      */
-    protected function send($url, $method = 'GET')
+    public function send($url, $headers = [], $method = 'GET')
     {
+        $options = [];
+
+        if (!empty($headers)) {
+            $options['headers'] = $headers;
+        }
+
         try {
-            $response = $this->client->request($method, $url);
+            $client = new GuzzleClient();
+            $response = $client->request($method, $url, $options);
 
             if ($response->getStatusCode() !== Response::HTTP_OK) {
                 throw new ExternalApiException("API error: Status code " . $response->getStatusCode());
             }
 
-            return $response;
+            if (!$response->getBody()) {
+                throw new ExternalApiException("API error: Response body is empty");
+            }
+
+            return json_decode((string) $response->getBody());
 
         } catch (RequestException $e) {
             throw new ExternalApiException("API error: " . $e->getMessage());

@@ -22,7 +22,7 @@ class Schedule
     private $season;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $day;
 
