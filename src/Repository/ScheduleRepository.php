@@ -2,15 +2,15 @@
 
 namespace App\Repository;
 
-use App\Entity\Mlb;
+use App\Entity\Schedule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class MlbRepository extends ServiceEntityRepository
+class ScheduleRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Mlb::class);
+        parent::__construct($registry, Schedule::class);
     }
 
     /*

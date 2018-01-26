@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\MlbRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ScheduleRepository")
  */
-class Mlb
+class Schedule
 {
     /**
      * @ORM\Id
@@ -15,6 +15,11 @@ class Mlb
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="integer", length=4)
+     */
+    private $season;
 
     /**
      * @ORM\Column(type="datetime")
@@ -51,6 +56,23 @@ class Mlb
     {
         $this->id = $id;
     }
+
+    /**
+     * @return int
+     */
+    public function getSeason()
+    {
+        return $this->season;
+    }
+
+    /**
+     * @param int $season
+     */
+    public function setSeason($season)
+    {
+        $this->season = $season;
+    }
+
 
     /**
      * @return \DateTime
