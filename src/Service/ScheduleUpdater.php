@@ -40,7 +40,6 @@ class ScheduleUpdater
         $this->subscriptionKey = $subscriptionKey;
     }
 
-
     /**
      * @param $season
      * @throws SchedulerUpdaterException
@@ -89,9 +88,9 @@ class ScheduleUpdater
     }
 
     /**
-     * @param $scheduleData
+     * @param array $scheduleData
      */
-    protected function setScheduleDataToDB($scheduleData)
+    protected function setScheduleDataToDB(array $scheduleData)
     {
         foreach ($scheduleData as $item) {
             $schedule = new Schedule();
