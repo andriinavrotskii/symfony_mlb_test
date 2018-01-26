@@ -3,25 +3,25 @@
  * Created by PhpStorm.
  * User: navrotskiy
  * Date: 26.01.18
- * Time: 16:56
+ * Time: 17:19
  */
 
 namespace App\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ApiController extends Controller
+class PageController extends Controller
 {
     /**
-     * @Route("/api/get_schedule", name="api_get_schedule")
+     * @Route("/", name="index")
      * @Method("GET")
      */
-    public function getSchedule(Request $request)
+    public function index(Request $request)
     {
-        return new JsonResponse(['api' => 'hello']);
+        return new Response('index page');
     }
 }
