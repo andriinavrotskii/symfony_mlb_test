@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\DTO\ScheduleParamsDTO;
 use App\Entity\Schedule;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -23,6 +24,12 @@ class ScheduleRepository extends ServiceEntityRepository
             ->delete()
             ->where('s.season  = :season')->setParameter("season", $season)
             ->getQuery()->execute();
+    }
+
+
+    public function getScheduleByParams(ScheduleParamsDTO $paramsDTO)
+    {
+        die;
     }
 
 }
