@@ -8,7 +8,7 @@ use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class ExternalApiRequest
+class ExternalApiRequestService
 {
     /**
      * @param $url

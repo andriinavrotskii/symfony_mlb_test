@@ -20,7 +20,7 @@ class PageController extends Controller
      * @Route("/", name="index")
      * @Method("GET")
      */
-    public function index(Request $request)
+    public function index(Request $request )
     {
         return new Response('index page');
     }

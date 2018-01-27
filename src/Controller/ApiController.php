@@ -8,7 +8,7 @@
 
 namespace App\Controller;
 
-use App\Service\GetSchedule;
+use App\Service\ScheduleService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +21,7 @@ class ApiController extends Controller
      * @Route("/api/get_schedule", name="api_get_schedule")
      * @Method("GET")
      */
-    public function getSchedule(Request $request, GetSchedule $service)
+    public function getSchedule(Request $request, ScheduleService $service)
     {
         return new JsonResponse(
             $service->getSchedule($request)

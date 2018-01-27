@@ -3,7 +3,7 @@
 namespace App\Command;
 
 use App\Exception\SchedulerUpdaterException;
-use App\Service\ScheduleUpdater;
+use App\Service\ScheduleUpdaterService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,16 +16,16 @@ class UpdateScheduleCommand extends Command
     const MAX_RANGE_INTERVAL = 50;
 
     /**
-     * @var ScheduleUpdater
+     * @var ScheduleUpdaterService
      */
     protected $updater;
 
     /**
      * UpdateScheduleCommand constructor.
      * @param null $name
-     * @param ScheduleUpdater $updater
+     * @param ScheduleUpdaterService $updater
      */
-    public function __construct($name = null, ScheduleUpdater $updater)
+    public function __construct($name = null, ScheduleUpdaterService $updater)
     {
         parent::__construct($name);
         $this->updater = $updater;

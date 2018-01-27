@@ -14,7 +14,7 @@ use App\Entity\Schedule;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class GetSchedule
+class ScheduleService
 {
     /**
      * @instance EntityManager
@@ -22,7 +22,7 @@ class GetSchedule
     protected $em;
 
     /**
-     * GetSchedule constructor.
+     * ScheduleService constructor.
      * @param EntityManagerInterface $em
      */
     public function __construct(EntityManagerInterface $em)
@@ -32,7 +32,7 @@ class GetSchedule
 
     public function getSchedule(Request $request)
     {
-        $data = $this->em->getRepository(Schedule::class)
+        $data = $this->em->getRepository(ScheduleService::class)
             ->getScheduleByParams($this->getScheduleParamsDTO($request));
 
         return [

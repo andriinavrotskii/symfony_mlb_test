@@ -8,7 +8,7 @@ use App\Exception\SchedulerUpdaterException;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManagerInterface;
 
-class ScheduleUpdater
+class ScheduleUpdaterService
 {
 
     const FANTASYDATA_API_URL = 'https://api.fantasydata.net/mlb/v2/json/Games/';
@@ -19,7 +19,7 @@ class ScheduleUpdater
     protected $em;
 
     /**
-     * @var ExternalApiRequest
+     * @var ExternalApiRequestService
      */
     protected $externalApiRequest;
 
@@ -31,9 +31,9 @@ class ScheduleUpdater
     /**
      * NlpScheduleUpdater constructor.
      * @param EntityManagerInterface $em
-     * @param ExternalApiRequest $externalApiRequest
+     * @param ExternalApiRequestService $externalApiRequest
      */
-    public function __construct(EntityManagerInterface $em, ExternalApiRequest $externalApiRequest, $subscriptionKey)
+    public function __construct(EntityManagerInterface $em, ExternalApiRequestService $externalApiRequest, $subscriptionKey)
     {
         $this->em = $em;
         $this->externalApiRequest = $externalApiRequest;
