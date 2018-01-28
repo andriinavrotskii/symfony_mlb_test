@@ -1,0 +1,15 @@
+body {
+    padding-top: 5rem;
+}
+
+.body-content {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+
+.schedule .row:nth-of-type(odd) div {
+    background-color: #ffffff;
+}
+.schedule .row:nth-of-type(even) div {
+    background: #f1f1f1;
+}

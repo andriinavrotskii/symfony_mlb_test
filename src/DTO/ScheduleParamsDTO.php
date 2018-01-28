@@ -128,4 +128,20 @@ class ScheduleParamsDTO
     {
         $this->stadiumId = $stadiumId;
     }
+
+
+    /**
+     * @return array
+     */
+    public function getConditions()
+    {
+        $result = [];
+        foreach ($this as $key => $value) {
+            if (empty($value)) {
+                continue;
+            }
+            $result[$key] = $value;
+        }
+        return $result;
+    }
 }

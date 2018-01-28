@@ -30,26 +30,13 @@ class ScheduleService
         $this->em = $em;
     }
 
-    public function getSchedule(Request $request)
+    /**
+     * @param array $requestData
+     * @return array
+     */
+    public function getSchedule(array $requestData)
     {
-        $data = $this->em->getRepository(ScheduleService::class)
-            ->getScheduleByParams($this->getScheduleParamsDTO($request));
-
-        return [
-            'api' => 'hello',
-            'data' => $data
-        ];
-    }
-
-    private function getScheduleParamsDTO(Request $request)
-    {
-        $dto = new ScheduleParamsDTO();
-        $dto->setSeason($request->get('season'));
-        $dto->setAwayTeam($request->get('awayteam'));
-        $dto->setHomeTeam($request->get('hometeam'));
-        $dto->setStadiumId($request->get('stadium'));
-        $dto->setDay($request->get('day'));
-
-        return $dto;
+        return $this->em->getRepository(Schedule::class)
+            ->findBy($requestData);
     }
 }

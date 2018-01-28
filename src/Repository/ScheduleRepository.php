@@ -25,11 +25,4 @@ class ScheduleRepository extends ServiceEntityRepository
             ->where('s.season  = :season')->setParameter("season", $season)
             ->getQuery()->execute();
     }
-
-
-    public function getScheduleByParams(ScheduleParamsDTO $paramsDTO)
-    {
-        die;
-    }
-
 }

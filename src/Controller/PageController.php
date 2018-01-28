@@ -8,20 +8,28 @@
 
 namespace App\Controller;
 
+use App\Service\ScheduleService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class PageController extends Controller
 {
     /**
      * @Route("/", name="index")
      * @Method("GET")
+     *
+     * @param Request $request
+     * @param ScheduleService $service
+     *
+     * @return Response
      */
-    public function index(Request $request )
+    public function index(Request $request, ScheduleService $service)
     {
-        return new Response('index page');
+        return $this->render('schedule/index.html.twig', [
+            'data' => $service->getSchedule($request->query->all())
+        ]);
     }
 }

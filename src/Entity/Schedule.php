@@ -75,11 +75,11 @@ class Schedule
 
 
     /**
-     * @return \DateTime
+     * @return string
      */
     public function getDay()
     {
-        return $this->day;
+        return $this->day->format('Y-m-d');
     }
 
     /**
