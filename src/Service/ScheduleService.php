@@ -10,6 +10,7 @@ namespace App\Service;
 
 use App\Entity\Schedule;
 use App\Exception\ScheduleException;
+use App\Repository\ScheduleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ScheduleService
@@ -36,8 +37,9 @@ class ScheduleService
     {
         $this->checkRequestData($requestData);
 
-        return $this->em->getRepository(Schedule::class)
-            ->findBy($requestData);
+        /** @var ScheduleRepository $scheduleRepository */
+        $scheduleRepository = $this->em->getRepository(Schedule::class);
+        return $scheduleRepository->findBy($requestData);
     }
 
     /**

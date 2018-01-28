@@ -41,26 +41,18 @@ class Schedule
      */
     private $stadiumId;
 
-//    /**
-//     * @return mixed
-//     */
-//    public function getId()
-//    {
-//        return $this->id;
-//    }
-
-//    /**
-//     * @param mixed $id
-//     */
-//    public function setId($id)
-//    {
-//        $this->id = $id;
-//    }
+    /**
+     * @return int
+     */
+    private function getId(): int
+    {
+        return $this->id;
+    }
 
     /**
      * @return int
      */
-    public function getSeason()
+    public function getSeason(): int
     {
         return $this->season;
     }
@@ -68,7 +60,7 @@ class Schedule
     /**
      * @param int $season
      */
-    public function setSeason($season)
+    public function setSeason(int $season)
     {
         $this->season = $season;
     }
@@ -77,7 +69,7 @@ class Schedule
     /**
      * @return string
      */
-    public function getDay()
+    public function getDay(): string
     {
         return $this->day->format('Y-m-d');
     }
@@ -90,50 +82,51 @@ class Schedule
         $this->day = $day;
     }
 
+
     /**
-     * @return mixed
+     * @return string
      */
-    public function getAwayTeam()
+    public function getAwayTeam(): string
     {
         return $this->awayTeam;
     }
 
     /**
-     * @param mixed $awayTeam
+     * @param string $awayTeam
      */
-    public function setAwayTeam($awayTeam)
+    public function setAwayTeam(string $awayTeam)
     {
         $this->awayTeam = $awayTeam;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getHomeTeam()
+    public function getHomeTeam(): string
     {
         return $this->homeTeam;
     }
 
     /**
-     * @param mixed $homeTeam
+     * @param string $homeTeam
      */
-    public function setHomeTeam($homeTeam)
+    public function setHomeTeam(string $homeTeam)
     {
         $this->homeTeam = $homeTeam;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getStadiumId()
+    public function getStadiumId(): int
     {
         return $this->stadiumId;
     }
 
     /**
-     * @param mixed $stadiumId
+     * @param int $stadiumId
      */
-    public function setStadiumId($stadiumId)
+    public function setStadiumId(int $stadiumId)
     {
         $this->stadiumId = $stadiumId;
     }

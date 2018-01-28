@@ -58,7 +58,7 @@ class UpdateScheduleCommand extends Command
             $io->success("Updated without errors");
 
         } catch (SchedulerUpdaterException $e) {
-            $io->warning("Error while updateing: {$e->getMessage()}");
+            $io->warning("Error while updating: {$e->getMessage()}");
         }
     }
 
