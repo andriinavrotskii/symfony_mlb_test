@@ -8,8 +8,10 @@
 
 namespace App\Controller;
 
+use App\Exception\ScheduleException;
 use App\Service\ScheduleService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,12 +34,15 @@ class ApiController extends Controller
      */
     public function getSchedule(Request $request, ScheduleService $service)
     {
-        $data = $service->getSchedule($request->query->all());
-        $status = empty($data) ? JsonResponse::HTTP_NOT_ACCEPTABLE : JsonResponse::HTTP_OK;
-
-        return $this->getJsonResponse([
-            'data' => $data
-        ], $status);
+        try {
+            return $this->getJsonResponse([
+                'data' => $service->getSchedule($request->query->all())
+            ]);
+        } catch (ScheduleException $e) {
+            return $this->getJsonResponse([
+                'error' => $e->getMessage()
+            ], JsonResponse::HTTP_NOT_ACCEPTABLE);
+        }
     }
 
     /**

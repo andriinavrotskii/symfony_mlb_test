@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Exception\ScheduleException;
 use App\Service\ScheduleService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,8 +29,15 @@ class PageController extends Controller
      */
     public function index(Request $request, ScheduleService $service)
     {
+        try {
+            $data = $service->getSchedule($request->query->all());
+        } catch (ScheduleException $e) {
+            $error = $e->getMessage();
+        }
+
         return $this->render('schedule/index.html.twig', [
-            'data' => $service->getSchedule($request->query->all())
+            'data' => isset($data) ? $data : null,
+            'error' => isset($error) ? $error : null
         ]);
     }
 }

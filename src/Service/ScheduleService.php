@@ -9,6 +9,7 @@
 namespace App\Service;
 
 use App\Entity\Schedule;
+use App\Exception\ScheduleException;
 use Doctrine\ORM\EntityManagerInterface;
 
 class ScheduleService
@@ -33,7 +34,26 @@ class ScheduleService
      */
     public function getSchedule(array $requestData)
     {
+        $this->checkRequestData($requestData);
+
         return $this->em->getRepository(Schedule::class)
             ->findBy($requestData);
+    }
+
+    /**
+     * @param array $requestData
+     * @throws \Exception
+     */
+    protected function checkRequestData(array $requestData)
+    {
+        $allowedKeys = ["season", "day", "awayTeam", "homeTeam", "stadiumId"];
+
+        foreach ($requestData as $key => $value) {
+            if (!in_array($key, $allowedKeys)) {
+                throw new ScheduleException(
+                    "Key '{$key}' not allowed. Allowed keys: '" . implode("', '", $allowedKeys) . "'."
+                );
+            }
+        }
     }
 }

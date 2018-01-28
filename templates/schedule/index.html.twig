@@ -1,51 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block body_content %}
-    <div class="container">
-        <div class="row alert-success">
-            <div class="col">
-                id
-            </div>
-            <div class="col">
-                season
-            </div>
-            <div class="col">
-                day
-            </div>
-            <div class="col">
-                awayTeam
-            </div>
-            <div class="col">
-                homeTeam
-            </div>
-            <div class="col">
-                stadiumId
+
+    {% if error is not null %}
+        <div class="container alert-danger">
+            {{ error }}
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="row alert-success">
+                <div class="col">
+                    season
+                </div>
+                <div class="col">
+                    day
+                </div>
+                <div class="col">
+                    awayTeam
+                </div>
+                <div class="col">
+                    homeTeam
+                </div>
+                <div class="col">
+                    stadiumId
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container schedule">
-        {% for item in data %}
-            <div class="row">
-                <div class="col">
-                    {{ item.id }}
+        <div class="container schedule">
+            {% for item in data %}
+                <div class="row">
+                    <div class="col">
+                        {{ item.season }}
+                    </div>
+                    <div class="col">
+                        {{ item.day }}
+                    </div>
+                    <div class="col">
+                        {{ item.awayTeam }}
+                    </div>
+                    <div class="col">
+                        {{ item.homeTeam }}
+                    </div>
+                    <div class="col">
+                        {{ item.stadiumId }}
+                    </div>
                 </div>
-                <div class="col">
-                    {{ item.season }}
-                </div>
-                <div class="col">
-                    {{ item.day }}
-                </div>
-                <div class="col">
-                    {{ item.awayTeam }}
-                </div>
-                <div class="col">
-                    {{ item.homeTeam }}
-                </div>
-                <div class="col">
-                    {{ item.stadiumId }}
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}
