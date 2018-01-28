@@ -11,7 +11,7 @@ use Doctrine\ORM\EntityManagerInterface;
 class ScheduleUpdaterService
 {
 
-    const FANTASYDATA_API_URL = 'https://api.fantasydata.net/mlb/v2/json/Games/';
+    protected const FANTASYDATA_API_URL = 'https://api.fantasydata.net/mlb/v2/json/Games/';
 
     /**
      * @instance EntityManager

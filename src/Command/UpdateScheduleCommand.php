@@ -12,8 +12,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class UpdateScheduleCommand extends Command
 {
-    const MIN_RANGE_INTERVAL = 50;
-    const MAX_RANGE_INTERVAL = 50;
+    protected const MIN_RANGE_INTERVAL = 10;
+    protected const MAX_RANGE_INTERVAL = 5;
 
     /**
      * @var ScheduleUpdaterService
@@ -49,7 +49,7 @@ class UpdateScheduleCommand extends Command
 
 
         try {
-            $season = $this->getSeason($input);
+            $season = $this->getSeason($input->getArgument('season'));
 
             $io->comment("Updating schedule for {$season} season");
 
@@ -63,13 +63,13 @@ class UpdateScheduleCommand extends Command
     }
 
     /**
-     * @param InputInterface $input
-     * @return int
+     * @param $seasonRaw
+     * @return int|mixed
      * @throws SchedulerUpdaterException
      */
-    protected function getSeason(InputInterface $input)
+    protected function getSeason($seasonRaw)
     {
-        if ($seasonRaw = $input->getArgument('season')) {
+        if ($seasonRaw) {
             $options = [
                 'min_range' => date("Y") - self::MIN_RANGE_INTERVAL,
                 'max_range' => date("Y") + self::MAX_RANGE_INTERVAL,

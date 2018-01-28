@@ -6,6 +6,10 @@
         <div class="container alert-danger">
             {{ error }}
         </div>
+    {% elseif data is empty %}
+        <div class="container alert-warning">
+            No data
+        </div>
     {% else %}
         <div class="container">
             <div class="row alert-success">
