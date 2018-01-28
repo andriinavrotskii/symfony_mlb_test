@@ -8,11 +8,8 @@
 
 namespace App\Service;
 
-
-use App\DTO\ScheduleParamsDTO;
 use App\Entity\Schedule;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 
 class ScheduleService
 {

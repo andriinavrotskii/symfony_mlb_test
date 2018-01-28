@@ -41,10 +41,11 @@ class ApiController extends Controller
     }
 
     /**
-     * @param $data
+     * @param array $data
+     * @param int $code
      * @return JsonResponse
      */
-    private function getJsonResponse($data, $code = 200)
+    private function getJsonResponse(array $data, $code = JsonResponse::HTTP_OK)
     {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizers = array(new ObjectNormalizer());
