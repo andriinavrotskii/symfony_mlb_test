@@ -44,7 +44,7 @@ class Schedule
     /**
      * @return int
      */
-    private function getId(): int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -60,24 +60,24 @@ class Schedule
     /**
      * @param int $season
      */
-    public function setSeason(int $season)
+    public function setSeason(int $season): void
     {
         $this->season = $season;
     }
 
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getDay(): string
+    public function getDay(): \DateTime
     {
-        return $this->day->format('Y-m-d');
+        return $this->day;
     }
 
     /**
      * @param \DateTime $day
      */
-    public function setDay(\DateTime $day)
+    public function setDay(\DateTime $day): void
     {
         $this->day = $day;
     }
@@ -94,7 +94,7 @@ class Schedule
     /**
      * @param string $awayTeam
      */
-    public function setAwayTeam(string $awayTeam)
+    public function setAwayTeam(string $awayTeam): void
     {
         $this->awayTeam = $awayTeam;
     }
@@ -110,7 +110,7 @@ class Schedule
     /**
      * @param string $homeTeam
      */
-    public function setHomeTeam(string $homeTeam)
+    public function setHomeTeam(string $homeTeam): void
     {
         $this->homeTeam = $homeTeam;
     }
@@ -126,7 +126,7 @@ class Schedule
     /**
      * @param int $stadiumId
      */
-    public function setStadiumId(int $stadiumId)
+    public function setStadiumId(int $stadiumId): void
     {
         $this->stadiumId = $stadiumId;
     }
